@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import os
 import hashlib
 import random
-
+import wget
+import shutil
 def find_nth(haystack, needle, n=1):
     start = haystack.find(needle)
     while start >= 0 and n > 1:
@@ -13,7 +14,7 @@ def find_nth(haystack, needle, n=1):
     return start
 
 links = []
-with io.open('new.html', 'r', encoding='utf-8') as fp:
+with io.open('fb.html', 'r', encoding='utf-8') as fp:
 	soup = BeautifulSoup(fp, features="html.parser")
 
 	scripts = soup.find_all('script')
@@ -41,4 +42,14 @@ for i in links:
 new_dir = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
 os.mkdir(new_dir)
 os.chdir(new_dir)
+dwd = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
+for j in clinks:
+	wget.download(j)
+shutil.make_archive(dwd, 'zip', new_dir)
+print('done')
+
+
+
+
+
 

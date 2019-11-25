@@ -42,7 +42,7 @@ for i in links:
 new_dir = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
 os.mkdir(new_dir)
 os.chdir(new_dir)
-dwd = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest() + ".zip"
+dwd = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
 
 
 for j in clinks:

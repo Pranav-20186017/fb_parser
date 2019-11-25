@@ -5,7 +5,7 @@ import os
 import hashlib
 import random
 import wget
-import shutil
+import shutil 
 def find_nth(haystack, needle, n=1):
     start = haystack.find(needle)
     while start >= 0 and n > 1:
@@ -42,10 +42,19 @@ for i in links:
 new_dir = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
 os.mkdir(new_dir)
 os.chdir(new_dir)
-dwd = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest()
+dwd = hashlib.md5(str(int(random.random() * 10 ** 7)).encode('utf-8')).hexdigest() + ".zip"
+
+
 for j in clinks:
-	wget.download(j)
+	try:
+		wget.download(j)
+	except Exception as e:
+		print(e)
+		continue
+
+os.chdir('..')
 shutil.make_archive(dwd, 'zip', new_dir)
+os.system('RD /S /Q ' + new_dir)
 print('done')
 
 
